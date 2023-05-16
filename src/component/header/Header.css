@@ -1,0 +1,16 @@
+.header {
+    height: 2rem;
+}
+
+.mode {
+    float: left;
+    width: 5rem;
+}
+
+.filter {
+
+}
+
+.filter-item {
+    padding-left: 1rem;
+}

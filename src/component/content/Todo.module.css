@@ -1,0 +1,10 @@
+.todoContainer {
+    height: 24rem;
+    overflow: auto;
+}
+.todo {
+    height: 1.5rem;
+}
+.delete {
+    float: right;
+}

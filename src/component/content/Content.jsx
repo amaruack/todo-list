@@ -16,6 +16,9 @@ export const Content = () => {
     const [todoItem, setTodoItem] = useState('');
 
     const handleAdd = (e) => {
+        if (todoItem === '') {
+            return
+        }
         dispatch({type:'added', todoItem:todoItem});
         setTodoItem('');
     }

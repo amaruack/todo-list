@@ -7,8 +7,12 @@ import styles from './Todo.module.css';
 
 export const Content = () => {
 
+    let initData = localStorage.getItem('todoList');
+    initData = initData === null ? [] : JSON.parse(initData);
+
+    console.log(initData);
     const {header} = useContext(HeaderContext);
-    const [todoList, dispatch] = useReducer(todoReducer, () => {return []}  );
+    const [todoList, dispatch] = useReducer(todoReducer, initData);
     const [todoItem, setTodoItem] = useState('');
 
     const handleAdd = (e) => {
@@ -24,8 +28,7 @@ export const Content = () => {
         <div>
             <div className={styles.todoContainer}>
                 {
-                    todoList
-                        .filter((todo) =>  {
+                    todoList.filter((todo) =>  {
                             if (header.filter === 'all') {
                                 return true;
                             } else {

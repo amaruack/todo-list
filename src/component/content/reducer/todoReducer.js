@@ -1,15 +1,16 @@
 export default function todoReducer(todoList, action){
-    console.log(action);
 
     switch (action.type) {
         case 'updated': {
             const {todoItem, status} = action;
-            return todoList.map((todo) => {
+            const updated = todoList.map((todo) => {
                 if(todo.todoItem === todoItem) {
                     return {todoItem, status}
                 }
                 return todo;
             })
+            localStorage.setItem("todoList", JSON.stringify(updated));
+            return updated
         }
         case 'added' : {
             if (todoList.find(t => t.todoItem === action.todoItem)) {
@@ -20,11 +21,15 @@ export default function todoReducer(todoList, action){
                 todoItem : action.todoItem,
                 status : 'active'
             }
-            return [...todoList, addTodo]
+            const added = [...todoList, addTodo];
+            localStorage.setItem("todoList", JSON.stringify(added));
+            return added
 
         }
         case 'deleted' : {
-            return todoList.filter(m => m.todoItem !== action.todoItem)
+            const deleted = todoList.filter(m => m.todoItem !== action.todoItem);
+            localStorage.setItem("todoList", JSON.stringify(deleted));
+            return deleted;
         }
 
         default:{

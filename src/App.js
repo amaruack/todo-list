@@ -1,14 +1,16 @@
 import './App.css';
 import {Header} from "./component/header/Header";
 import {Content} from "./component/content/Content";
-import {Bottom} from "./component/bottom/Bottom";
+import {HeaderProvider} from "./context/HeaderContext";
 
 function App() {
     return (
-        <div className={'container'}>
-            <Header/>
-            <Content/>
-        </div>
+        <HeaderProvider>
+            <div className={'container'}>
+                <Header/>
+                <Content/>
+            </div>
+        </HeaderProvider>
     );
 }
 

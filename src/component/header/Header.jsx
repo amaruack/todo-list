@@ -21,7 +21,7 @@ export const Header = () => {
             <ul className={styles.filters}>
                 {
                     Filters.map((value, index) =>
-                        <button className={`${styles.filterItem} ${header.filter === value && styles.active}`} data-type={value} onClick={handleActive}>{value}</button>
+                        <button key={value} className={`${styles.filterItem} ${header.filter === value && styles.active}`} data-type={value} onClick={handleActive}>{value}</button>
                     )
                 }
             </ul>

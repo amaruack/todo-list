@@ -9,11 +9,8 @@ import {v4 as uuidv4} from "uuid";
 
 export const Content = () => {
 
-    let initData = localStorage.getItem('todoList');
-    initData = initData === null ? [] : JSON.parse(initData);
-
     const {header} = useHeader();
-    const [todoList, dispatch] = useReducer(todoReducer, initData);
+    const [todoList, dispatch] = useReducer(todoReducer, [], () => readTodoList());
 
     const handleAdd = (replacedItem) => {
         dispatch({type:'added', todoId: uuidv4(), todoItem:replacedItem});
@@ -40,17 +37,8 @@ export const Content = () => {
     );
 };
 
-const initialData = [
-    // {
-    //     todoItem:'todo1',
-    //     status : 'active'
-    // },
-    // {
-    //     todoItem:'todo2',
-    //     status : 'active'
-    // },
-    // {
-    //     todoItem:'todo3',
-    //     status : 'completed'
-    // }
-]
+const readTodoList = () => {
+    let initData = localStorage.getItem('todoList');
+    initData = initData === null ? [] : JSON.parse(initData);
+    return initData;
+}

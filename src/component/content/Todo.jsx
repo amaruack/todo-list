@@ -20,8 +20,8 @@ export const Todo = (props) => {
 
     return (
         <li className={styles.todo} >
-            <input className={styles.checkbox} type={'checkbox'} checked={props.todo.status === 'completed' ? true:false} onChange={handleChange}/>
-            <label className={styles.text}>{props.todo.todoItem}</label>
+            <input className={styles.checkbox} type={'checkbox'} id={`checkbox_${props.todo.todoId}`} name={`checkbox_${props.todo.todoId}`} checked={props.todo.status === 'completed' ? true:false} onChange={handleChange}/>
+            <label htmlFor={`checkbox_${props.todo.todoId}`} className={styles.text}>{props.todo.todoItem}</label>
             <span className={styles.icon}><button className={styles.delete} onClick={handleDelete}><FaTrashAlt/></button></span>
         </li>
     );

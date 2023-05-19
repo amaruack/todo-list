@@ -14,8 +14,8 @@ export function HeaderProvider({children}) {
     }
 
     useEffect(() => {
-        //TODO localStorage
-
+        const mode = localStorage.mode === null ? false:localStorage.mode ;
+        setHeader(prevState => ({mode:mode, filter:prevState.filter}));
     }, []);
 
     return (
@@ -26,14 +26,11 @@ export function HeaderProvider({children}) {
 function updateDarkMode(darkMode) {
     if (darkMode) {
         document.documentElement.classList.add('dark');
-        localStorage.theme='dark';
+        localStorage.mode=true;
     } else {
         document.documentElement.classList.remove('dark');
-        localStorage.theme='light';
+        localStorage.theme=false;
     }
-
-
-
 }
 
 export const useHeader = () => useContext(HeaderContext);

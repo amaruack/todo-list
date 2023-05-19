@@ -1,25 +1,28 @@
 import React from 'react';
 import styles from './Todo.module.css';
-import {BiTrash} from "react-icons/bi";
+import {FaTrashAlt} from "react-icons/fa";
 
 export const Todo = (props) => {
 
     // todoDispatch
     const handleChange = (e) => {
-        const todoId = e.target.parentElement.dataset.id;
-        props.todoDispatch({type:'updated', todoId:todoId, status: e.target.checked ? 'completed' : 'active'})
+        // const todoId = e.target.parentElement.dataset.id;
+        const todoId = props.todo.todoId;
+        const status = e.target.checked ? 'completed' : 'active';
+        props.todoDispatch({type:'updated', todoId, status })
     }
 
     const handleDelete = (e) => {
-        const todoId = e.target.parentElement.dataset.id;
+        // const todoId = e.target.parentElement.dataset.id;
+        const todoId = props.todo.todoId;
         props.todoDispatch({type:'deleted', todoId:todoId})
     }
 
     return (
-        <div className={styles.todo} data-id={props.todo.todoId}>
-            <input type={'checkbox'} checked={props.todo.status === 'completed' ? true:false} onChange={handleChange}/>
-            <span>{props.todo.todoItem}</span>
-            <button className={styles.delete} onClick={handleDelete}>delete</button>
-        </div>
+        <li className={styles.todo} >
+            <input className={styles.checkbox} type={'checkbox'} checked={props.todo.status === 'completed' ? true:false} onChange={handleChange}/>
+            <label className={styles.text}>{props.todo.todoItem}</label>
+            <span className={styles.icon}><button className={styles.delete} onClick={handleDelete}><FaTrashAlt/></button></span>
+        </li>
     );
 };

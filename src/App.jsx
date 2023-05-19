@@ -6,10 +6,8 @@ import {HeaderProvider} from "./context/HeaderContext";
 function App() {
     return (
         <HeaderProvider>
-            <div className={'container'}>
-                <Header/>
-                <Content/>
-            </div>
+            <Header/>
+            <Content/>
         </HeaderProvider>
     );
 }

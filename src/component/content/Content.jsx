@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useReducer, useState} from 'react';
 import {Todo} from "./Todo";
 import todoReducer from "./reducer/todoReducer";
-import {HeaderContext} from "../../context/HeaderContext";
+import {HeaderContext, useHeader} from "../../context/HeaderContext";
 
 import styles from './Todo.module.css';
 import {TodoAdd} from "./TodoAdd";
@@ -12,7 +12,7 @@ export const Content = () => {
     let initData = localStorage.getItem('todoList');
     initData = initData === null ? [] : JSON.parse(initData);
 
-    const {header} = useContext(HeaderContext);
+    const {header} = useHeader();
     const [todoList, dispatch] = useReducer(todoReducer, initData);
 
     const handleAdd = (replacedItem) => {
@@ -20,8 +20,8 @@ export const Content = () => {
     }
 
     return (
-        <div>
-            <div className={styles.todoContainer}>
+        <section className={`${styles.todoContainer}`}>
+            <ul className={styles.todoList}>
                 {
                     todoList.filter((todo) =>  {
                             if (header.filter === 'all') {
@@ -31,12 +31,12 @@ export const Content = () => {
                             }
                         })
                         .map((todo) => {
-                        return <Todo key={todo.todoId} todo={todo}  todoDispatch={dispatch}/>
+                        return <Todo key={todo.todoId} todo={todo} todoDispatch={dispatch}/>
                     })
                 }
-            </div>
+            </ul>
             <TodoAdd onAdd={handleAdd}/>
-        </div>
+        </section>
     );
 };
 

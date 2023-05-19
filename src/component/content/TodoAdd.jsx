@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import styles from './TodoAdd.module.css';
+
 
 export const TodoAdd = (props) => {
 
@@ -19,9 +21,9 @@ export const TodoAdd = (props) => {
     }
 
     return (
-        <form onSubmit={handleAddClick}>
-            <input id={'todo'} name={'todo'} type={'text'} value={todoItem} onChange={handleChange}/>
-            <button>add</button>
+        <form className={styles.form} onSubmit={handleAddClick}>
+            <input placeholder={'Todo ADD'} className={styles.input} id={'todo'} name={'todo'} type={'text'} value={todoItem} onChange={handleChange}/>
+            <button className={styles.button}>add</button>
         </form>
     )
 }

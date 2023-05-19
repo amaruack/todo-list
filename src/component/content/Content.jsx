@@ -5,6 +5,7 @@ import {HeaderContext} from "../../context/HeaderContext";
 
 import styles from './Todo.module.css';
 import {TodoAdd} from "./TodoAdd";
+import {v4 as uuidv4} from "uuid";
 
 export const Content = () => {
 
@@ -15,7 +16,7 @@ export const Content = () => {
     const [todoList, dispatch] = useReducer(todoReducer, initData);
 
     const handleAdd = (replacedItem) => {
-        dispatch({type:'added', todoItem:replacedItem});
+        dispatch({type:'added', todoId: uuidv4(), todoItem:replacedItem});
     }
 
     return (
@@ -30,7 +31,7 @@ export const Content = () => {
                             }
                         })
                         .map((todo) => {
-                        return <Todo key={todo.todoItem} todo={todo}  todoDispatch={dispatch}/>
+                        return <Todo key={todo.todoId} todo={todo}  todoDispatch={dispatch}/>
                     })
                 }
             </div>

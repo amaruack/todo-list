@@ -2,10 +2,10 @@ export default function todoReducer(todoList, action){
 
     switch (action.type) {
         case 'updated': {
-            const {todoItem, status} = action;
+            const {todoId, status} = action;
             const updated = todoList.map((todo) => {
-                if(todo.todoItem === todoItem) {
-                    return {todoItem, status}
+                if(todo.todoId === todoId) {
+                    return {todoId, todoItem:todo.todoItem, status}
                 }
                 return todo;
             })
@@ -18,6 +18,7 @@ export default function todoReducer(todoList, action){
                 return [...todoList]
             }
             const addTodo = {
+                todoId : action.todoId,
                 todoItem : action.todoItem,
                 status : 'active'
             }
@@ -27,7 +28,7 @@ export default function todoReducer(todoList, action){
 
         }
         case 'deleted' : {
-            const deleted = todoList.filter(m => m.todoItem !== action.todoItem);
+            const deleted = todoList.filter(m => m.todoId !== action.todoId);
             localStorage.setItem("todoList", JSON.stringify(deleted));
             return deleted;
         }

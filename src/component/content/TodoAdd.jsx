@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {v4 as uuidv4} from "uuid";
 
 export const TodoAdd = (props) => {
 
@@ -16,7 +15,6 @@ export const TodoAdd = (props) => {
             return
         }
         props.onAdd(replacedItem);
-        uuidv4();
         setTodoItem('');
     }
 

@@ -6,17 +6,17 @@ export const Todo = (props) => {
 
     // todoDispatch
     const handleChange = (e) => {
-        const todoItem = e.target.parentElement.dataset.id;
-        props.todoDispatch({type:'updated', todoItem:todoItem, status: e.target.checked ? 'completed' : 'active'})
+        const todoId = e.target.parentElement.dataset.id;
+        props.todoDispatch({type:'updated', todoId:todoId, status: e.target.checked ? 'completed' : 'active'})
     }
 
     const handleDelete = (e) => {
-        const todoItem = e.target.parentElement.dataset.id;
-        props.todoDispatch({type:'deleted', todoItem:todoItem})
+        const todoId = e.target.parentElement.dataset.id;
+        props.todoDispatch({type:'deleted', todoId:todoId})
     }
 
     return (
-        <div className={styles.todo} data-id={props.todo.todoItem}>
+        <div className={styles.todo} data-id={props.todo.todoId}>
             <input type={'checkbox'} checked={props.todo.status === 'completed' ? true:false} onChange={handleChange}/>
             <span>{props.todo.todoItem}</span>
             <button className={styles.delete} onClick={handleDelete}>delete</button>

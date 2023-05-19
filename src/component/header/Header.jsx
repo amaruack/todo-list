@@ -16,7 +16,7 @@ export const Header = () => {
     return (
         <header className={styles.header}>
             <button onClick={() => toggleDarkMode()} className={styles.mode}>
-                {header.mode ? <HiSun/> : <HiMoon/>}
+                {header.mode ? <HiMoon/> : <HiSun/>}
             </button>
             <ul className={styles.filters}>
                 {
